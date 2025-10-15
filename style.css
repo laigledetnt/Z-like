@@ -1,0 +1,160 @@
+/* Simple responsive UI */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; font-family:Arial,Helvetica,sans-serif; background:#111; color:#eee; -webkit-user-select:none; user-select:none; }
+canvas { display:block; width:100vw; height:100vh; background:#000; }
+
+#joystick {
+  position: fixed;
+  left: 16px;
+  bottom: 18px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  touch-action: none;
+  z-index: 50;
+}
+#stick {
+  position:absolute;
+  left: 25px;
+  top: 25px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.18);
+  pointer-events:none;
+  transition: transform 0.05s linear;
+}
+
+/* HUD bottom */
+#hud {
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0px;
+  gap:0px;
+  z-index:60;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+  pointer-events:none;
+}
+#info { display:flex; gap:12px; padding-left:12px; pointer-events:none; font-weight:600; }
+
+/* Shop button */
+#shopButton {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(200,200,200,0.08);
+  color: #fff;
+  border: none;
+  z-index: 70;
+  font-size: 14px;
+  pointer-events: auto;
+}
+
+/* Shop modal */
+#shopModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.9);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+#shopModal.hidden {
+  display: none;
+}
+
+.shopItem, #cancelPlace, #closeShop {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:4px 6px;
+  border-radius:8px;
+  font-size:12px;
+  touch-action: manipulation;
+}
+
+.shopItem.selected {
+  outline: 2px solid #ffd24d;
+  background: rgba(255,210,77,0.12);
+}
+
+/* small screens adjust */
+@media (max-width:600px){
+  #joystick { left:12px; bottom:12px; width:96px; height:96px; }
+  #stick { left:18px; top:18px; width:60px; height:60px; }
+  .shopItem { font-size:13px; min-width:64px; padding:6px 8px; }
+}
+
+/* === Player Healthbar === */
+#healthbar {
+  position: fixed;
+  bottom: 10px; /* tu peux mettre bottom: 80px; si tu veux en bas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 18px;
+  background: rgba(100, 0, 0, 0.5);
+  border: 2px solid #222;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+#healthbar-inner {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, #2ecc71, #27ae60);
+  transition: width 0.2s linear;
+}
+
+#upgradeModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.9);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  color: #fff;
+}
+
+#upgradeModal.hidden { display: none; }
+
+#upgradeButton {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#waveTimerDisplay {
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  color: #fff;
+  font-size: 14px;
+  z-index: 80;
+}
+
